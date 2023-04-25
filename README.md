@@ -1,2 +1,3 @@
 # Amazon_Review_Analyzer
-version 2 because I made a dumb
+pip3 install flask
+pip3 install google-cloud-storageß
