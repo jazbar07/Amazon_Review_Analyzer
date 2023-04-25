@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Google Cloud Storage Buckets</title>
-    </head>
-    <body>
-        <h1>My Bucket Blobs</h1>
-
-        <p>The highest rated product is {{ highest_rated }} with an average rating of {{ average_rating }} </p>
-
-        <table>
+<head>
+    <title>Table of 5.0 Ratings</title>
+</head>
+<body>
+    <table>
+        <thead>
             <tr>
-              <th>Product ID</th>
-              <th>Average Rating</th>
+                <th>Product Name</th>
+                <th>Average Rating from Reviews</th>
+                <th>Description</th>
+                <th>Product Info</th>
             </tr>
-            {% for productId, productData in product_rate_list.items() if productData['avg_rating'] == 5.0 %}
-              <tr>
-                <td>{{ productId }}</td>
-                <td>{{ productData['avg_rating'] }}</td>
-              </tr>
+        </thead>
+        <tbody>
+            {% for data in datas %}
+                <tr>
+                    <td>{{ datas[1][2] }}</td>
+                    <td>{{ datas[1][8] }}</td>
+                    <td>{{ datas[1][11] }}</td>
+                    <td>{{ datas[1][12] }}</td>
+                </tr>
             {% endfor %}
-          </table>
-
-    </body>
+        </tbody>
+    </table>
+</body>
 </html>
