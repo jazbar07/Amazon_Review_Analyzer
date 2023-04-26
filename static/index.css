@@ -1,0 +1,19 @@
+.container {
+    width: 100%;
+    margin: auto;
+}
+
+.search_bar {
+    background-color: burlywood;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+    width: 100%;
+}
+
+.search_elements {
+    background-color: #fff;
+    top: 100px;
+    margin: auto;
+}
