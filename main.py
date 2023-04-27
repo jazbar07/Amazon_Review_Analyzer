@@ -4,7 +4,7 @@ import csv
 
 app = Flask(__name__)
 
-bucket_name = 'amazon_electric_reviews'
+bucket_name = 'atozreviews'
 csv_file_name = 'amazon_co-ecommerce_sample.csv'
 local_csv_file_path = './csv_file.csv'
 
@@ -34,7 +34,7 @@ with open(local_csv_file_path, 'wb') as file_obj:
 
 @app.route('/')
 def main():
-    with open(local_csv_file_path, 'r') as csvfile:
+    with open(local_csv_file_path, 'r',encoding="utf-8") as csvfile:
         reader = csv.reader(csvfile)
         datas = [row for row in reader]
 
@@ -45,4 +45,4 @@ def main():
     return render_template('index.html', datas=datas, len=len(datas), x=1)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True, use_reloader=True)

@@ -5,8 +5,24 @@
     <link href="/static/index.css" rel="stylesheet" />
 </head>
 <body class="container">
-    <div class="search_bar"></div>
-    <div class="search_elements">
+        <div class="container1">
+        <div class="top_bar">
+            <div class ="search-bar">
+                <div id="select">
+                    <p> All products features</P>
+                    <img src="./static/arrow.png">
+                    <ul>
+                        <li class="options">All products</li>
+                        <li class="options">Product Name</li>
+                        <li class="options">Rating</li>
+                        <li class="options">Description</li>
+                        <li class="options">Category</li>
+                    </ul>  
+                </div>
+                <input type="text" placeholder="Search in all categories">
+            </div>
+        </div></div>
+    <div class="top_elements">
 	    <table>
 		<thead>
 			<tr>
@@ -27,6 +43,6 @@
 			{% endfor %}
 		</tbody>
 	    </table>
-        </div>
+    </div>
 </body>
 </html>
