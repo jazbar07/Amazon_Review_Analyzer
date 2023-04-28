@@ -94,6 +94,10 @@ td {
     box-sizing: border-box;
 }
 
+#input option{
+    position: inherit;
+}
+
 #inputfield {
     background-color: #fff;
     height: 40px;

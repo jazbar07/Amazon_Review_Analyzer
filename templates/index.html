@@ -9,6 +9,62 @@
         
         <!-- fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+
+
+        <script>
+            var selected = document.getElementById("filter").value;
+            var query = document.getElementById("inputfield").value;
+            var options = document.getElementById("options");
+
+            function populateTable (selectedOption, query) {
+                const tableBody = document.querySelector('#newTable tbody');
+                switch(selectedOption){
+                    case "All Products":
+                    for (let i = 1; i < { len }; i++) {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                        <td>${datas[i][2]}</td>
+                        <td>${datas[i][8]}</td>
+                        <td>${datas[i][11]}</td>
+                        <td>${datas[i][12]}</td>
+                        `;
+                    tableBody.appendChild(row);
+                    }
+                    break;
+                   /* case "Product Name":
+                    for (let i = 1; i < {{ len }}; i++) {
+
+  const matchesQuery = query === '' ||
+    datas[i][2].toLowerCase().includes(query.toLowerCase()) ||
+    datas[i][11].toLowerCase().includes(query.toLowerCase());
+  if (matchesQuery) {
+    tableBody.appendChild(row);
+  }
+}
+                        break;
+                    case "Rating":
+                        break;
+                    case "Description":
+                        break;
+                    case "Category":
+                        break;
+                } */
+
+            }
+        };
+
+            selected.addEventListener('click',(event) => {
+                const selectedOption = event.target.textContent;
+                window.addEventListener('DOMContentLoaded', populateTable(selectedOption)); 
+            });
+            /* function search () {
+                
+
+                windows.location.href = "/search?=" + selected + "&query=" + query;
+            } */
+        
+        </script>
+
     </head>
 <body>
     <div class="top_bar">
@@ -21,14 +77,14 @@
         <!-- Code for the Search Bar stuff-->
         <form action="/search" class='wrap' method="get">
             <select id="filter">
-                <option value="all">All Products</option>
-                <option value="title">Product Name</option>
-                <option value="author">Rating</option>
-                <option value="author">Description</option>
-                <option value="author">Category</option>
-                </select>
+                <option class="options" value="all">All Products</option>
+                <option class="options">Product Name</option>
+                <option class="options">Rating</option>
+                <option class="options">Description</option>
+                <option class="options">Category</option>
+            </select>
             <input type="text" id="inputfield" placeholder="Search in all Categories">
-            <button type="submit" id="clicky"><i class="bi bi-search"></i></button>
+            <button type="submit" id="clicky" onclick="search()"><i class="bi bi-search"></i></button>
         </form>
 
         <!-- Code for the ? on-click -->
