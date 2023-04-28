@@ -4,7 +4,7 @@ import csv
 
 app = Flask(__name__)
 
-bucket_name = 'atozreviews'
+bucket_name = 'amazon_electric_reviews'
 csv_file_name = 'amazon_co-ecommerce_sample.csv'
 local_csv_file_path = './csv_file.csv'
 
