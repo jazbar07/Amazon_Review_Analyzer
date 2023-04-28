@@ -9,6 +9,18 @@
         
         <!-- fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+
+
+        <script>
+            function search () {
+                var selected = document.getElementById("filter").value;
+                var query = document.getElementById("inputfield").value;
+
+                windows.location.href = "/search?selected=" + selected + "&query=" + query;
+            }
+        
+        </script>
+
     </head>
 <body>
     <div class="top_bar">
@@ -28,7 +40,7 @@
                 <option value="author">Category</option>
                 </select>
             <input type="text" id="inputfield" placeholder="Search in all Categories">
-            <button type="submit" id="clicky"><i class="bi bi-search"></i></button>
+            <button type="submit" id="clicky" onclick="search()"><i class="bi bi-search"></i></button>
         </form>
 
         <!-- Code for the ? on-click -->
