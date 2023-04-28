@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html>
     <head>
-	<title>Table of 5.0 Ratings</title>
-    <link href="/static/index.css" rel="stylesheet" />
-</head>
-<body class="container">
+        <title>Table of 5.0 Ratings</title>
+        <link href="/static/index.css" rel="stylesheet" />
+        <script svg="/dynamic/dropdown.js"></script>
+    </head>
+<body>
         <div class="container1">
-        <div class="top_bar">
             <div class ="search-bar">
                 <div id="select">
-                    <p> All products features</P>
+                    <p id="selectText"> All Products</P>
                     <img src="./static/arrow.png">
-                    <ul>
-                        <li class="options">All products</li>
+                    <ul id="list">
+                        <li class="options">All Products</li>
                         <li class="options">Product Name</li>
                         <li class="options">Rating</li>
                         <li class="options">Description</li>
                         <li class="options">Category</li>
                     </ul>  
                 </div>
-                <input type="text" placeholder="Search in all categories">
+                <input type="text" id="inputfield" placeholder="Search in all categories">
             </div>
-        </div></div>
-    <div class="top_elements">
+        </div>
+
+    <div>
 	    <table>
 		<thead>
 			<tr>
@@ -32,7 +33,7 @@
 				<th>Product Info</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody id="tableattr">
 			{% for x in range(1, len) %}
 				<tr>
 					<td>{{ datas[x][2] }}</td>
