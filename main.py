@@ -41,8 +41,9 @@ def main():
     # Pass the filtered data to the template for display
     return render_template('index.html', datas=datas, len=len(datas), x=1)
 
-@app.route('/search')
+@app.route('/search?=')
 def search():
+    """
     selected_option = request.args.get('selected')
     search_query = request.args.get('query')
 
@@ -50,12 +51,13 @@ def search():
         reader = csv.reader(csvfile)
         datas = [row for row in reader if row and len(row) >= 3]
 
+        data = []
         for row in datas:
+            data = {}
             if selected_option == 'All Products':
                 data = datas
                 break
             elif selected_option == 'Product Name':
-                data = {}
                 for rowbyrow in row[rowbyrow][2]:
                     check_input = rowbyrow.split('<')
                     if check_input.startswith(search_query):
@@ -63,7 +65,6 @@ def search():
                     else:
                         continue 
             elif selected_option == 'Rating':
-                data = {}
                 for rowbyrow in row[rowbyrow][8]:
                     check_input = rowbyrow.split('out')
                     if check_input.startswith(search_query):
@@ -71,14 +72,12 @@ def search():
                     else:
                         continue
             elif selected_option == 'Description':
-                data = {}
                 for rowbyrow in row[rowbyrow][11]:
                     if search_query in rowbyrow:
                         data.append(rowbyrow)
                     else:
                         continue
             elif selected_option == 'Category':
-                data = {}
                 for rowbyrow in row[rowbyrow][9]:
                    check_input = rowbyrow.split('>')
                    if check_input.startswith(search_query):
@@ -87,6 +86,7 @@ def search():
                        continue
             else:
                 break
+            """
     return render_template('search_results.html', datas=data, len=len(data), x=0)
 
 

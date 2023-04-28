@@ -4,12 +4,28 @@
         <title>Table of 5.0 Ratings</title>
         <link href="/static/index.css" rel="stylesheet" />
         <script svg="/dynamic/dropdown.js"></script>
+        <!-- bootstrap for icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+        
+        <!-- fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+
+
+        <script>
+            function search () {
+                var selected = document.getElementById("filter").value;
+                var query = document.getElementById("inputfield").value;
+
+                windows.location.href = "/search?=" + selected + "&query=" + query;
+            }
+        </script>
     </head>
 <body>
     <div class="top_bar">
         <!-- Code for the Logo -->
         <div class="logo">
-            <div class="logo_font">Amazon Fashion Search</div>
+            <div class="logo_top_font">Fashion Search</div>
+            <div class="logo_bottom_font">Amazon <i class="bi bi-arrow-left-right" id="arrow"></i></div> 
         </div>
 
         <!-- Code for the Search Bar stuff-->
@@ -22,11 +38,11 @@
                 <option value="author">Category</option>
                 </select>
             <input type="text" id="inputfield" placeholder="Search in all Categories">
-            <button type="submit" id="clicky">Search</button>
+            <button type="submit" id="clicky" onclick="search()"><i class="bi bi-search"></i></button>
         </form>
 
-        <!-- Code for the ? on-click
-        <div class="aboutclick"></div>-->
+        <!-- Code for the ? on-click -->
+        <div class="aboutclick"><div id="firstword">About</div><div id="secondwords">the site</div></div>
     </div>
 
     <div class="main_content">
