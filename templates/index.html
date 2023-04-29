@@ -9,6 +9,104 @@
         
         <!-- fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+
+        <script>
+            var selected = document.getElementById("filter");
+            var query = document.getElementById("inputfield");
+            var options = document.getElementById("options");
+
+            function populateTable (selectedOption, queryValue) {
+                const tableBody = document.querySelector('#newTable tbody');
+                tableBody.innerHTML = '';
+                switch(selectedOption){
+                    case "All Products":
+                        for (let i = 0; i < data.length; i++) {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                            <td>${data[i][2]}</td>
+                            <td>${data[i][8]}</td>
+                            <td>${data[i][11]}</td>
+                            <td>${data[i][12]}</td>
+                            `;
+                            tableBody.appendChild(row);
+                        }
+                        break;
+                    case "Product Name":
+                        for (let i = 0; i < data.length; i++) {
+                            const matchesQuery = queryValue === '' ||
+                                data[i][2].toLowerCase().includes(queryValue.toLowerCase()) ||
+                                data[i][11].toLowerCase().includes(queryValue.toLowerCase());
+                            if (matchesQuery) {
+                                const row = document.createElement('tr');
+                                row.innerHTML = `
+                                <td>${data[i][2]}</td>
+                                <td>${data[i][8]}</td>
+                                <td>${data[i][11]}</td>
+                                <td>${data[i][12]}</td>
+                                `;
+                                tableBody.appendChild(row);
+                            }
+                        }
+                        break;
+                    case "Rating":
+                        for (let i = 0; i < data.length; i++) {
+                            const rating = parseFloat(data[i][8]);
+                            const matchesQuery = queryValue === '' || rating >= parseFloat(queryValue);
+                            if (matchesQuery) {
+                                const row = document.createElement('tr');
+                                row.innerHTML = `
+                                <td>${data[i][2]}</td>
+                                <td>${data[i][8]}</td>
+                                <td>${data[i][11]}</td>
+                                <td>${data[i][12]}</td>
+                                `;
+                                tableBody.appendChild(row);
+                            }
+                        }
+                        break;
+                    case "Description":
+                        for (let i = 0; i < data.length; i++) {
+                            const matchesQuery = queryValue === '' ||
+                                data[i][9].toLowerCase().includes(queryValue.toLowerCase());
+                            if (matchesQuery) {
+                                const row = document.createElement('tr');
+                                row.innerHTML = `
+                                <td>${data[i][2]}</td>
+                                <td>${data[i][8]}</td>
+                                <td>${data[i][11]}</td>
+                                <td>${data[i][12]}</td>
+                                `;
+                                tableBody.appendChild(row);
+                            }
+                        }
+                        break;
+                    case "Category":
+                        for (let i = 0; i < data.length; i++) {
+                            const matchesQuery = queryValue === '' ||
+                                data[i][10].toLowerCase().includes(queryValue.toLowerCase());
+                            if (matchesQuery) {
+                                const row = document.createElement('tr');
+                                row.innerHTML = `
+                                <td>${data[i][2]}</td>
+                                <td>${data[i][9]}</td>
+                                <td>${data[i][11]}</td>
+                                <td>${data[i][12]}</td>
+                                `;
+                                tableBody.appendChild(row);
+                            }
+                        }
+                        break;
+                    }
+                }
+                filterDropdown.addEventListener('change', () => {
+                populateTable(filterDropdown.value, searchInput.value);
+                });
+
+                // Add event listener to the search input field
+                searchInput.addEventListener('input', () => {
+                    populateTable(filterDropdown.value, searchInput.value);
+                });
+    </script>
     </head>
 <body>
     <div class="top_bar">
@@ -19,7 +117,7 @@
         </div>
 
         <!-- Code for the Search Bar stuff-->
-        <form action="/search" class='wrap' method="get">
+        <form action="/" class='wrap' method="get">
             <select id="filter">
                 <option value="all">All Products</option>
                 <option value="title">Product Name</option>
@@ -33,6 +131,28 @@
 
         <!-- Code for the ? on-click -->
         <div class="aboutclick"><div id="firstword">About</div><div id="secondwords">the site</div></div>
+    </div>
+    <div class="main_content">
+	    <table>
+		<thead>
+			<tr>
+				<th>Product Name</th>
+				<th>Average Rating from Reviews</th>
+				<th>Description</th>
+				<th>Product Info</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for x in range(1, len) %}
+				<tr>
+					<td>{{ datas[x][2] }}</td>
+					<td>{{ datas[x][8] }}</td>
+					<td>{{ datas[x][11] }}</td>
+					<td>{{ datas[x][12] }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	    </table>
     </div>
 </body>
 </html>

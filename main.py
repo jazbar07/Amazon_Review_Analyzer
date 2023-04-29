@@ -1,6 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from google.cloud import storage
 import csv
+
 
 app = Flask(__name__)
 
@@ -32,17 +33,33 @@ with open(local_csv_file_path, 'wb') as file_obj:
     blob.download_to_file(file_obj)
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def main():
-    with open(local_csv_file_path, 'r',encoding="utf-8") as csvfile:
-        reader = csv.reader(csvfile)
-        datas = [row for row in reader]
+    if request.method == 'POST':
+        query = request.form['query']
+        option = request.form['option']
 
-    # Filter the rows to include only those with a 5.0 rating in the 9th column
-    # filtered_data = [row for row in data if row[8] = '5.0 out of 5 stars']
+        with open(local_csv_file_path, 'r', encoding="utf-8") as csvfile:
+            reader = csv.reader(csvfile)
+            data = [row for row in reader if row and len(row) >= 3]
 
-    # Pass the filtered data to the template for display
-    return render_template('index.html', datas=datas, len=len(datas), x=1)
+        filtered_data = []
+        for i in range(len(data)):
+            if option == '' or data[i][9] == option:
+                if query == '' or query.lower() in data[i][2].lower():
+                    filtered_data.append(data[i])
+
+        return render_template('index.html', datas=filtered_data, len=len(filtered_data), x=1)
+
+    else:
+        with open(local_csv_file_path, 'r', encoding="utf-8") as csvfile:
+            reader = csv.reader(csvfile)
+            datas = [row for row in reader if row and len(row) >= 3]
+
+        # Pass the original data to the template for display
+        return render_template('index.html', datas=datas, len=len(datas), x=1)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True) 
